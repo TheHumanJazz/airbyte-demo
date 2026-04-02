@@ -3,12 +3,6 @@ kind: Kustomization
 
 resources:
   - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-
-helmCharts:
-  - name: cert-manager
-    repo: https://charts.jetstack.io
-    version: v1.15.0
-    releaseName: cert-manager
-    namespace: cert-manager
-    valuesInline:
-      installCRDs: true
+  - namespace-cert-manager.yaml
+  - helmrepository-cert-manager.yaml
+  - helmrelease-cert-manager.yaml
