@@ -3,6 +3,4 @@ kind: Kustomization
 
 resources:
   - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-  - namespace-cert-manager.yaml
-  - helmrepository-cert-manager.yaml
-  - helmrelease-cert-manager.yaml
+  - cert-manager
