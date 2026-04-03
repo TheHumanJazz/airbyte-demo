@@ -5,3 +5,4 @@ resources:
   - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
   - cert-manager
   - cloudnative-pg
+  - airbyte-v2
