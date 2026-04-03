@@ -32,6 +32,7 @@ spec:
           paths:
             - path: /
               pathType: ImplementationSpecific
+              backend: server
       tls: []
     # serviceAccountName: &service-account-name airbyte-admin
     # edition: community
