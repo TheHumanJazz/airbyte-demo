@@ -18,26 +18,11 @@ spec:
   upgrade:
     crds: Create
   values:
-    serviceAccountName: &service-account-name airbyte-admin
-    edition: community
-    secretName: ""
-    local: false
     global:
+      serviceAccountName: airbyte-admin
+      edition: community
       airbyteUrl: "http://airbyte.localtest.me"
-    cluster:
-      type: hybrid
-      secretName: ""
-      controlPlane:
-        bootstrap:
-          dataPlane:
-            secretName: ""
-            clientIdSecretKey: ""
-            clientSecretSecretKey: ""
-      dataPlane:
-        controlPlaneAuthEndpoint: ""
-    enterprise:
-      secretName: ""
-      licenseKeySecretKey: ""
+
     ingress:
       enabled: true
       className: nginx
@@ -48,3 +33,33 @@ spec:
             - path: /
               pathType: ImplementationSpecific
       tls: []
+    # serviceAccountName: &service-account-name airbyte-admin
+    # edition: community
+    # secretName: ""
+    # local: false
+    # global:
+    #   airbyteUrl: "http://airbyte.localtest.me"
+    # cluster:
+    #   type: hybrid
+    #   secretName: ""
+    #   controlPlane:
+    #     bootstrap:
+    #       dataPlane:
+    #         secretName: ""
+    #         clientIdSecretKey: ""
+    #         clientSecretSecretKey: ""
+    #   dataPlane:
+    #     controlPlaneAuthEndpoint: ""
+    # enterprise:
+    #   secretName: ""
+    #   licenseKeySecretKey: ""
+    # ingress:
+    #   enabled: true
+    #   className: nginx
+    #   annotations: {}
+    #   hosts:
+    #     - host: airbyte.localtest.me
+    #       paths:
+    #         - path: /
+    #           pathType: ImplementationSpecific
+    #   tls: []
