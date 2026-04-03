@@ -12,6 +12,30 @@ services:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - kind
+
+  fake-data-writer:
+    build:
+      context: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+      USERS_INTERVAL_S: 1.5
+      ORDERS_INTERVAL_S: 1.0
+      EVENTS_INTERVAL_S: 0.5
+      USERS_BATCH_SIZE: 3
+      ORDERS_BATCH_SIZE: 5
+      EVENTS_BATCH_SIZE: 12
+      RETRY_DELAY_S: 3
+    restart: unless-stopped
     networks:
       - kind
 
