@@ -48,11 +48,11 @@ spec:
             - path: /
               pathType: ImplementationSpecific
       tls: []
-    webapp:
-      enabled: true
-      image:
-        repository: airbyte/webapp
-        pullPolicy: IfNotPresent
-        tag: 2.0.1
-      ingress:
-        enabled: true
+    # webapp:
+    #   enabled: true
+    #   image:
+    #     repository: airbyte/webapp
+    #     pullPolicy: IfNotPresent
+    #     tag: 2.0.1
+    #   ingress:
+    #     enabled: true
