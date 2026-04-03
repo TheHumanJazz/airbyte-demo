@@ -18,6 +18,15 @@ spec:
   upgrade:
     crds: Create
   values:
+    airflow:
+      repository: registry:5000/airflow-cosmos
+      tag: latest
+      pullPolicy: Always
+
+    pod_template:
+      repository: registry:5000/airflow-cosmos
+      tag: latest
+
     createUserJob:
       useHelmHooks: false
       applyCustomEnv: false
