@@ -590,8 +590,8 @@ spec:
       repository: airbyte/webapp
       # -- The pull policy to use for the airbyte webapp image
       pullPolicy: IfNotPresent
-      # -- Pin to a published image tag so the local kind cluster can start the UI
-      tag: 2.0.0-RC-a3743e9cb62
+      # -- Pin to the stable webapp release to avoid RC regressions
+      tag: 2.0.1
 
     annotations: {}
 
