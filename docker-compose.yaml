@@ -20,36 +20,49 @@ services:
     networks:
       - kind
 
-  fake-data-writer:
-    build:
-      context: .
-    depends_on:
-      postgres:
-        condition: service_healthy
-    environment:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
-      USERS_INTERVAL_S: 1.5
-      ORDERS_INTERVAL_S: 1.0
-      EVENTS_INTERVAL_S: 0.5
-      USERS_BATCH_SIZE: 3
-      ORDERS_BATCH_SIZE: 5
-      EVENTS_BATCH_SIZE: 12
-      RETRY_DELAY_S: 3
+  registry:
+    image: registry:2
+    container_name: registry
     restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /var/lib/registry
+    volumes:
+      - ./docker/mnt/registry:/var/lib/registry
     networks:
       - kind
 
-  clickhouse:
-    image: clickhouse/clickhouse-server:latest
-    container_name: clickhouse
-    restart: unless-stopped
-    ports:
-      - "8123:8123" # HTTP interface
-      - "9000:9000" # Native TCP interface
-    environment:
-      CLICKHOUSE_DB: analytics
-      CLICKHOUSE_USER: app_user
-      CLICKHOUSE_PASSWORD: app_password
-      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
-    networks:
-      - kind
+  # fake-data-writer:
+  #   build:
+  #     context: .
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   environment:
+  #     DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
+  #     USERS_INTERVAL_S: 1.5
+  #     ORDERS_INTERVAL_S: 1.0
+  #     EVENTS_INTERVAL_S: 0.5
+  #     USERS_BATCH_SIZE: 3
+  #     ORDERS_BATCH_SIZE: 5
+  #     EVENTS_BATCH_SIZE: 12
+  #     RETRY_DELAY_S: 3
+  #   restart: unless-stopped
+  #   networks:
+  #     - kind
+
+  # clickhouse:
+  #   image: clickhouse/clickhouse-server:latest
+  #   container_name: clickhouse
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8123:8123" # HTTP interface
+  #     - "9000:9000" # Native TCP interface
+  #   environment:
+  #     CLICKHOUSE_DB: analytics
+  #     CLICKHOUSE_USER: app_user
+  #     CLICKHOUSE_PASSWORD: app_password
+  #     CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+  #   networks:
+  #     - kind

@@ -24,3 +24,13 @@ spec:
     migrateDatabaseJob:
       useHelmHooks: false
       applyCustomEnv: false
+    ingress:
+      web:
+        enabled: true
+        ingressClassName: nginx
+        hosts:
+          - airflow.localtest.me
+        path: /
+        pathType: Prefix
+        tls:
+          enabled: false
