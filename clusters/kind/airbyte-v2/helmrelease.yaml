@@ -2574,90 +2574,90 @@ spec:
       extraInitContainers: []
       extraContainers: []
 
-  manifestServer:
-    enabled: true
-
-    # -- Number of manifest-server replicas
-    replicaCount: 1
-
-    serviceAccountName:
-
-    image:
-      repository: airbyte/manifest-server
-      tag: 7.10.0
-      pullPolicy: IfNotPresent
-
-    datadog:
-      serviceName: airbyte-manifest-server
-    annotations: {}
-
-    podSecurityContext:
-      # gid=1000(airbyte)
-      fsGroup: 1000
-
-    containerSecurityContext:
-      allowPrivilegeEscalation: false
-      runAsNonRoot: true
-      # uid=1000(airbyte)
-      runAsUser: 1000
-      # gid=1000(airbyte)
-      runAsGroup: 1000
-      readOnlyRootFilesystem: false
-      capabilities:
-        drop: ["ALL"]
-      seccompProfile:
-        type: RuntimeDefault
-
-    livenessProbe:
+    manifestServer:
       enabled: true
-      initialDelaySeconds: 30
-      periodSeconds: 10
-      timeoutSeconds: 10
-      failureThreshold: 3
-      successThreshold: 1
 
-    readinessProbe:
-      enabled: true
-      initialDelaySeconds: 30
-      periodSeconds: 10
-      timeoutSeconds: 10
-      failureThreshold: 3
-      successThreshold: 1
+      # -- Number of manifest-server replicas
+      replicaCount: 1
 
-    deploymentStrategyType: RollingUpdate
+      serviceAccountName:
 
-    ## Configure the ingress resource that allows you to access the manifest runner, see http://kubernetes.io/docs/user-guide/ingress/
-    ingress:
-      # -- Set to true to enable ingress record generation
-      enabled: false
-      # -- Specifies ingressClassName for clusters >= 1.18+
-      className: ""
-      # -- Ingress annotations done as key:value pairs
+      image:
+        repository: airbyte/manifest-server
+        tag: 7.10.0
+        pullPolicy: IfNotPresent
+
+      datadog:
+        serviceName: airbyte-manifest-server
       annotations: {}
-      # -- The list of hostnames to be covered with this ingress record
-      hosts: []
-      # -- Ingress TLS configuration
-      tls: []
 
-    ## manifest-server resource requests and limits
-    ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
-    ## We usually recommend not to specify default resources and to leave this as a conscious
-    ## choice for the user. This also increases chances charts run on environments with little
-    ## resources, such as Minikube. If you do want to specify resources, uncomment the following
-    ## lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    resources:
-      ## Example:
-      ## limits:
-      ##    cpu: 200m
-      ##    memory: 1Gi
-      # -- The resources limits for the airbyte-manifest-server container
-      limits: {}
-      ## Examples:
-      ## requests:
-      ##    memory: 256Mi
-      ##    cpu: 250m
-      # -- The requested resources for the airbyte-manifest-server container
-      requests: {}
+      podSecurityContext:
+        # gid=1000(airbyte)
+        fsGroup: 1000
+
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        # uid=1000(airbyte)
+        runAsUser: 1000
+        # gid=1000(airbyte)
+        runAsGroup: 1000
+        readOnlyRootFilesystem: false
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault
+
+      livenessProbe:
+        enabled: true
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 10
+        failureThreshold: 3
+        successThreshold: 1
+
+      readinessProbe:
+        enabled: true
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 10
+        failureThreshold: 3
+        successThreshold: 1
+
+      deploymentStrategyType: RollingUpdate
+
+      ## Configure the ingress resource that allows you to access the manifest runner, see http://kubernetes.io/docs/user-guide/ingress/
+      ingress:
+        # -- Set to true to enable ingress record generation
+        enabled: false
+        # -- Specifies ingressClassName for clusters >= 1.18+
+        className: ""
+        # -- Ingress annotations done as key:value pairs
+        annotations: {}
+        # -- The list of hostnames to be covered with this ingress record
+        hosts: []
+        # -- Ingress TLS configuration
+        tls: []
+
+      ## manifest-server resource requests and limits
+      ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+      ## We usually recommend not to specify default resources and to leave this as a conscious
+      ## choice for the user. This also increases chances charts run on environments with little
+      ## resources, such as Minikube. If you do want to specify resources, uncomment the following
+      ## lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+      resources:
+        ## Example:
+        ## limits:
+        ##    cpu: 200m
+        ##    memory: 1Gi
+        # -- The resources limits for the airbyte-manifest-server container
+        limits: {}
+        ## Examples:
+        ## requests:
+        ##    memory: 256Mi
+        ##    cpu: 250m
+        # -- The requested resources for the airbyte-manifest-server container
+        requests: {}
 
     service:
       type: ClusterIP
