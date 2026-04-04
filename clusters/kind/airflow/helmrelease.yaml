@@ -18,6 +18,8 @@ spec:
   upgrade:
     crds: Create
   values:
+    core:
+      test_connection: Enabled
     images:
       airflow:
         repository: localhost:5000/airflow-cosmos
