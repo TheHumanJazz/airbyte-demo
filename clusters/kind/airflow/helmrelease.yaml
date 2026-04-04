@@ -18,14 +18,14 @@ spec:
   upgrade:
     crds: Create
   values:
-    # airflow:
-    #   repository: registry:5000/airflow-cosmos
-    #   tag: latest
-    #   pullPolicy: Always
-    #
-    # pod_template:
-    #   repository: registry:5000/airflow-cosmos
-    #   tag: latest
+    connections:
+      - id: my_postgres
+        type: postgres
+        host: postgres
+        login: user
+        password: password
+        schema: db
+        port: 5432
     images:
       airflow:
         repository: localhost:5000/airflow-cosmos
