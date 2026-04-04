@@ -28,11 +28,11 @@ spec:
     #   tag: latest
     images:
       airflow:
-        repository: registry:5000/airflow-cosmos
+        repository: localhost:5000/airflow-cosmos
         tag: latest
         pullPolicy: Always
       pod_template:
-        repository: registry:5000/airflow-cosmos
+        repository: localhost:5000/airflow-cosmos
         tag: latest
         pullPolicy: Always
 
