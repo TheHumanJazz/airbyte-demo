@@ -6,4 +6,4 @@ resources:
   - cert-manager
   - cloudnative-pg
   - airflow
-  # - airbyte-v2
+  - airbyte-v2
