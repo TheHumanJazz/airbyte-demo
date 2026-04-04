@@ -1,1 +1,4 @@
 bootstrap.sh
+docker
+.env
+.envrc
